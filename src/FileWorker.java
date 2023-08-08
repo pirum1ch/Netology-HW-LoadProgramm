@@ -12,9 +12,9 @@ public class FileWorker {
 
     public void createDir(String workPath, String newDirName) {
         if (new File(workPath, newDirName).mkdir()) {
-            log = stringBuilder.append("File \"").append(newDirName).append("\" was created successfully \n").toString();
+            log = stringBuilder.append("Directory \"").append(newDirName).append("\" was created successfully \n").toString();
         } else {
-            log = stringBuilder.append("File \"").append(newDirName).append("\" was NOT created! \n").toString();
+            log = stringBuilder.append("Directory \"").append(newDirName).append("\" was NOT created! \n").toString();
         }
     }
 
