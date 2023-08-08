@@ -1,0 +1,11 @@
+File "src" was created successfully 
+File "res" was created successfully 
+File "savegames" was created successfully 
+File "temp" was created successfully 
+File "main" was created successfully 
+File "test" was created successfully 
+File "Main.java" was created successfully 
+File "Utils.java" was created successfully 
+File "drawables" was created successfully 
+File "vectors" was created successfully 
+File "icons" was created successfully 
