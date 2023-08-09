@@ -10,12 +10,12 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Serialize {
+
     public void saveGame(String fullPath, Object[] object) {
         if (object.length != 0) {
             for (Object obj : object) {
                 String saveName = "Save_" + obj.hashCode() + "_" + new Timestamp(new Date().getTime()) + ".dat";
-                try (FileOutputStream fos = new FileOutputStream(fullPath + saveName);
-                     ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fullPath + saveName))) {
                     oos.writeObject(obj);
                     System.out.println("File " + fullPath + saveName + " was created");
                 } catch (IOException exc) {
@@ -29,10 +29,10 @@ public class Serialize {
 
     public void zipFiles(String fullPath, List<String> listOfZippingFiles) {
         if (listOfZippingFiles.size() != 0) {
+
             String filepath;
-//            String zipName = "ZIP_" + new Timestamp(new Date().getTime()) +".zip";
-            try (FileOutputStream fos = new FileOutputStream(fullPath);
-                 ZipOutputStream zos = new ZipOutputStream(fos)) {
+
+            try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(fullPath))) {
                 for (String str : listOfZippingFiles) {
                     filepath = "Games/savegames/" + str;
                     FileInputStream fis = new FileInputStream(filepath);
