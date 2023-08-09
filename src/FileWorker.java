@@ -11,10 +11,11 @@ public class FileWorker {
     }
 
     public void createDir(String workPath, String newDirName) {
+        checkParentDir(workPath);
         if (new File(workPath, newDirName).mkdir()) {
-            log = stringBuilder.append("File \"").append(newDirName).append("\" was created successfully \n").toString();
+            log = stringBuilder.append("Directory \"").append(newDirName).append("\" was created successfully \n").toString();
         } else {
-            log = stringBuilder.append("File \"").append(newDirName).append("\" was NOT created! \n").toString();
+            log = stringBuilder.append("Directory \"").append(newDirName).append("\" was NOT created! \n").toString();
         }
     }
 
@@ -43,5 +44,10 @@ public class FileWorker {
         for (String file : newFileNames) {
             createFile(workPath, file);
         }
+    }
+
+    public boolean checkParentDir(String parentDir) {
+        File file = new File(parentDir);
+        return file.exists() || file.mkdir();
     }
 }
