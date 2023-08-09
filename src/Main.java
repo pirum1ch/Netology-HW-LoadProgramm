@@ -1,5 +1,9 @@
 import Serialize.GameProgress;
 import Serialize.Serialize;
+import Serialize.DeSerialize;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +14,7 @@ public class Main {
         FileWorker fw = new FileWorker();
         LogWriter logWriter = new LogWriter();
         Serialize saveGame = new Serialize();
+        DeSerialize deSer = new DeSerialize();
 
         //TODO В папке Games создайте несколько директорий: src, res, savegames, temp.
         fw.createDirs(workPath, new String[]{"src", "res", "savegames", "temp"});
@@ -37,8 +42,11 @@ public class Main {
 
 
         saveGame.saveGame(workPath + "/savegames/", new Object[] {gp1, gp2, gp3});
-        saveGame.zipFiles(workPath + "/savegames/", saveGame.getListOfSaves(workPath + "/savegames/"));
+        saveGame.zipFiles(workPath + "/savegames/zip.zip", saveGame.getListOfSaves(workPath + "/savegames/"));
 
+        // Задание 3
+        deSer.openZip(workPath + "/savegames/zip.zip", workPath);
+        saveGame.getListOfSaves(workPath + "/savegames/").stream().map(x -> "Games/savegames/" + x).forEach(deSer::deSerializeSaveGame);
 
     }
 
